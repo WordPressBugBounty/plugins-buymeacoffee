@@ -16,7 +16,7 @@
  * Plugin Name:       Buy Me a Coffee - Button and Widget
  * Plugin URI:        https://www.buymeacoffee.com/
  * Description:       Accept donations in a fast and friendly way. Instant payments via Stripe and direct bank transfer using Standard Payouts.
- * Version:           4.0
+ * Version:           4.1
  * Author:            Buy Me a Coffee
  * Author URI:        https://www.buymeacoffee.com
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('PLUGIN_NAME_VERSION', '4.0');
+define('PLUGIN_NAME_VERSION', '4.1');
 
 /**
  * The code that runs during plugin activation.

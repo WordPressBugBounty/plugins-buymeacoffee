@@ -3,9 +3,9 @@ Contributors: buymeacoffee
 Tags: Buy Me a Coffee, donate plugin, donation, PayPal Donate, crowdfunding
 Donate link: https://www.buymeacoffee.com/team
 Requires at least: 3.0.1
-Tested up to: 6.3.1
+Tested up to: 6.7.1
 Requires PHP: 5.2
-Stable tag: 3.9
+Stable tag: 4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,11 @@ All payments are transferred to your Bank or Stripe account (Stripe offers insta
 
 == Changelog ==
 
+4.1
+Fixed compatibility issues with the latest WordPress version.
+Fixed a few security issues.
+Performance fixes and polishing for a smoother experience.
+
 4.0
 Fixed a few security issues.
 Performance fixes and polishing for a smoother experience.
@@ -93,7 +98,7 @@ Fixed a few security issues.
 Performance fixes and polishing for a smoother experience.
 
 3.6
-Fixed issues with widget.
+Fixed issues with widget and button.
 More performance fixes and polishing for a smoother experience.
 
 3.5
