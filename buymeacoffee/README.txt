@@ -5,7 +5,7 @@ Donate link: https://www.buymeacoffee.com/team
 Requires at least: 3.0.1
 Tested up to: 6.7.1
 Requires PHP: 5.2
-Stable tag: 4.0
+Stable tag: 4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,11 @@ All payments are transferred to your Bank or Stripe account (Stripe offers insta
 2. Check the earnings and stats over a period of time
 
 == Changelog ==
+
+4.2
+Fixed a few security issues.
+Performance fixes and polishing for a smoother experience.
+Added logging for API endpoints.
 
 4.1
 Fixed compatibility issues with the latest WordPress version.

@@ -264,15 +264,21 @@ class Buy_Me_A_Coffee_Admin
             $name = $matches[1];
         }
 
-        $response = wp_remote_post('https://app.buymeacoffee.com/api/v1/check_availability/?project_slug=' . $name  , array(
+        $response = wp_remote_post('https://app.buymeacoffee.com/api/v1/check_availability'  , array(
             'headers' => array(
                 'Accept' => 'application/json/*/*',
                 'connection' => 'keep-alive',
             ),
             'cookies'     => array(),
+            'body' => array(
+                    'project_slug' => $name,
+            )
         ));
 
         $decodejs = json_decode($response['body']);
+
+        error_log('[bmc-wp-plugin-log][decoded-JSON] : ' . json_encode($decodejs));
+        error_log('[bmc-wp-plugin-log][API-response] : ' . json_encode($response));
 
         if (!is_null($decodejs->data->available) && !$decodejs->data->available) {
             $result = $wpdb->get_row("SELECT *FROM $table	WHERE admin_email ='" . $admin_email . "'");
