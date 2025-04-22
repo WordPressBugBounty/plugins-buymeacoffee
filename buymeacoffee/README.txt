@@ -1,11 +1,11 @@
 === Buy Me a Coffee - Button and Widget Plugin ===
 Contributors: buymeacoffee
-Tags: Buy Me a Coffee, donate plugin, donation, PayPal Donate, crowdfunding
+Tags: Buy Me a Coffee, donate plugin, donation, members, apple pay
 Donate link: https://www.buymeacoffee.com/team
 Requires at least: 3.0.1
-Tested up to: 6.7.1
+Tested up to: 6.8
 Requires PHP: 5.2
-Stable tag: 4.2
+Stable tag: 4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,10 @@ All payments are transferred to your Bank or Stripe account (Stripe offers insta
 2. Check the earnings and stats over a period of time
 
 == Changelog ==
+
+4.4
+Fixed a few security issues.
+Performance fixes and polishing for a smoother experience.
 
 4.3
 Fixed a few security issues.
