@@ -32,8 +32,8 @@ class BMC_Widget extends WP_Widget
     public function widget($args, $instance)
     {
 
-        $title = apply_filters('widget_title', $instance['title']);
-        $color = apply_filters('widget_color', $instance['color']);
+        $title = apply_filters('widget_title', (isset($instance['title']) ? $instance['title'] : ''));
+        $color = apply_filters('widget_color', (isset($instance['color']) ? $instance['color'] : ''));
         $blog_title = get_bloginfo('name');
         $tagline = get_bloginfo('description');
         $color = $instance['color'];
