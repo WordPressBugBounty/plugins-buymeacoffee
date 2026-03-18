@@ -845,6 +845,7 @@ class Buy_Me_A_Coffee_Admin_View
         <script src="<?php echo (FJS) ?>jscolor.js"></script>
 
         <script>
+            var $ = jQuery;
             jQuery('#save-btn').click(function() {
                 jQuery('#save-btn-text').hide();
                 jQuery('#save-btn-loader').show();
@@ -1018,6 +1019,7 @@ class Buy_Me_A_Coffee_Admin_View
 
 
         <script type="text/javascript">
+            var $ = jQuery;
             popup_width();
 
             $(window).resize(function() {
@@ -1042,6 +1044,7 @@ class Buy_Me_A_Coffee_Admin_View
         </script>
 
         <script type="text/javascript">
+            var $ = jQuery;
             var stat = jQuery('#popup-status').val();
             if (stat == 'true') {
                 var x = document.getElementById("bmc-popup")
@@ -1067,6 +1070,7 @@ class Buy_Me_A_Coffee_Admin_View
         <script src="<?php echo (FJS) ?>utils.js"></script>
 
         <script type="text/javascript">
+            var $ = jQuery;
             jQuery(".bmc-align-tab").click(function() {
                 $(this).siblings(".bmc-align-tab").removeClass("bmc-tab-ac");
                 $(this).addClass("bmc-tab-ac");
@@ -1076,6 +1080,7 @@ class Buy_Me_A_Coffee_Admin_View
 
         <!-- BMC button choose (with text and color)-->
         <script type="text/javascript">
+            var $ = jQuery;
             //basilEdit
             function update(jscolor) {
                 // 'jscolor' instance can be used as a string
