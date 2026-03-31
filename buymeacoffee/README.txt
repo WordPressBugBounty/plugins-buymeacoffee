@@ -5,7 +5,7 @@ Donate link: https://www.buymeacoffee.com/team
 Requires at least: 3.0.1
 Tested up to: 6.8
 Requires PHP: 5.2
-Stable tag: 4.4.3
+Stable tag: 4.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,13 +35,13 @@ Prerequisites
 
 Activate widget (one-time step)
 
-1. Go to Buy Me A Coffee plugin page from the sidebar
-2. Under the "Add your account", enter your Buy Me A Coffee username then click Save.
+1. Go to Buy Me a Coffee plugin page from the sidebar
+2. Under the "Add your account", enter your Buy Me a Coffee username then click Save.
 3. Go to Button section > Customize Button > Add to widgets
 
 Adding Button to sidebar or other widget areas.
 
-1. Go to Buy Me A Coffee plugin page from the sidebar.
+1. Go to Buy Me a Coffee plugin page from the sidebar.
 
 2. Click on Customize button from the buttons section, make the required changes and click on add to widgets.
 
@@ -57,7 +57,7 @@ Adding Button to sidebar or other widget areas.
 
 == Frequently Asked Questions ==
 
-= What is Buy Me A Coffee? =
+= What is Buy Me a Coffee? =
 
 Buy Me a Coffee is a fast and beautiful way to accept support and offer extras to your audience. Instead of asking your audience to donate or 'become your patron', you can ask them to buy you a coffee. Simply share your BMC page link or add a button or widget to your page and allow your fans/followers/page visitors to support you effortlessly in a single tap.
 
@@ -74,6 +74,9 @@ All payments are transferred to your Bank or Stripe account (Stripe offers insta
 2. Check the earnings and stats over a period of time
 
 == Changelog ==
+
+4.4.4
+Performance update for a smoother experience.
 
 4.4.3
 Fixed a jquery issues.
