@@ -44,6 +44,13 @@ class Buy_Me_A_Coffee_Admin
     private $version;
 
     /**
+     * @since    4.4.3
+     * @access   private
+     * @var      Buy_Me_A_Coffee_Admin_View    $view
+     */
+    private $view;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
