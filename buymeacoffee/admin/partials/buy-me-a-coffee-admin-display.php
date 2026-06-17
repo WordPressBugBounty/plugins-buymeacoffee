@@ -348,9 +348,7 @@ class Buy_Me_A_Coffee_Admin_View
                     </h2>
                     <p class="bmc-para">Enable this feature to accept payments without leaving your website. You can also showcase your supporters and customize the widget to your style. We highly recommend enabling this feature.</p>
                     <p class="bmc-para">
-                    <div class="answer2 button_bmc_widget trigger" <?php if ($data_user['widget']['widget_isactive'] == "1") {
-                        ?> onclick="toggleModal()" <?php
-                    } ?> style="display: none !important;">Customize Widget</div>
+                    <div class="answer2 button_bmc_widget trigger" <?php if ($data_user['widget']['widget_isactive'] == "1") { ?> onclick="toggleModal()" <?php } ?> style="<?php echo ($data_user['widget']['widget_isactive'] == "1") ? 'display: inline-flex;' : 'display: none;'; ?>">Customize Widget</div>
                     </p>
 
                 </div>
@@ -1035,11 +1033,6 @@ class Buy_Me_A_Coffee_Admin_View
             $(document).ready(function() {
                 $(window).scrollTop(0);
                 $('[data-toggle="tooltip"]').tooltip();
-                if ($('#switch2').prop("checked") == true) {
-                    document.querySelector('.trigger').style.display = "inline-flex";
-                } else {
-                    document.querySelector('.trigger').style.display = "none";
-                }
             });
         </script>
 

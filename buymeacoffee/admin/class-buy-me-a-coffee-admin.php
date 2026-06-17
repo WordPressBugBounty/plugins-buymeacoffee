@@ -412,6 +412,9 @@ class Buy_Me_A_Coffee_Admin
         global $wpdb;
         $table = $wpdb->prefix . 'bmc_widget_plugin';
         $result = $wpdb->get_row("SELECT *FROM $table ORDER BY id ASC LIMIT 1");
+        if (!$result || $result->widget_isactive != '1') {
+            return;
+        }
         ?>
         <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="<?php echo $result->name ?>" data-description="<?php echo wp_unslash($result->description) ?>" data-message="<?php echo wp_unslash($result->message) ?>" data-color="<?php echo $result->widget_color ?>" data-position="<?php echo $result->align ?>" data-x_margin="<?php echo $result->side_spacing ?>" data-y_margin="<?php echo $result->bottom_spacing ?>">
         </script>
