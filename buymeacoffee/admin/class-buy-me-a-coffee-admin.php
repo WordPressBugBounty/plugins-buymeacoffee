@@ -418,6 +418,7 @@ class Buy_Me_A_Coffee_Admin
         ?>
         <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="<?php echo $result->name ?>" data-description="<?php echo wp_unslash($result->description) ?>" data-message="<?php echo wp_unslash($result->message) ?>" data-color="<?php echo $result->widget_color ?>" data-position="<?php echo $result->align ?>" data-x_margin="<?php echo $result->side_spacing ?>" data-y_margin="<?php echo $result->bottom_spacing ?>">
         </script>
+        <style>#bmc-iframe { height: 640px !important; min-height: 0 !important; max-height: 640px !important; <?php if ($result->align === 'left') echo 'transform-origin: left bottom !important;'; ?> }</style>
         <?php
     }
 

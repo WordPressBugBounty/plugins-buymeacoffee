@@ -1816,12 +1816,21 @@ a.bmc-foot-links:focus {
   background-color: #f471ff;
 }
 
+#modal-section {
+  overflow-x: auto;
+  position: relative;
+}
+
+#modal-section .flex {
+  min-width: 880px;
+}
+
 .widgetPreview {
-  height: 700px;
+  height: 760px;
 }
 
 .widget-frame {
-  height: 700px;
+  height: 760px;
   width: 100%;
   position: relative;
   display: flex;

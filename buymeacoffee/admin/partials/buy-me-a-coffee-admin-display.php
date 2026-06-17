@@ -895,16 +895,24 @@ class Buy_Me_A_Coffee_Admin_View
                 var sideSpaceValue = $('#sideSpace').val();
                 var bottomSpaceValue = $('#bottomSpace').val();
                 // function updateWidget() {
+                var posRule = (widgetPosValue.toLowerCase() === 'left')
+                    ? 'left:' + sideSpaceValue + 'px!important;right:auto!important;'
+                    : 'right:' + sideSpaceValue + 'px!important;left:auto!important;';
+                var transformOriginRule = (widgetPosValue.toLowerCase() === 'left')
+                    ? 'transform-origin:left bottom!important;'
+                    : 'transform-origin:right bottom!important;';
+                var previewStyle = '<style>#bmc-iframe{position:fixed!important;top:auto!important;bottom:' + (parseInt(bottomSpaceValue) + 72) + 'px!important;' + posRule + 'width:420px!important;max-width:420px!important;height:640px!important;min-height:0!important;max-height:640px!important;' + transformOriginRule + '}#bmc-close-btn{display:none!important;}</style>';
                 $("#widgetPreview").append($("<iframe />").attr({
-                    "srcdoc": '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><script data-name="BMC-Widget" src="' + widgetFile + '" data-id="' + userName + '" data-description="' + descriptionTextValue + '" data-message="' + messageTextValue + '" data-color="' + WcolorValue + '" data-position="' + widgetPosValue + '" data-x_margin="' + sideSpaceValue + '" data-y_margin="' + bottomSpaceValue + '"><\/script></head><body></body></html>',
+                    "srcdoc": '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge">' + previewStyle + '<script data-name="BMC-Widget" src="' + widgetFile + '" data-id="' + userName + '" data-description="' + descriptionTextValue + '" data-message="' + messageTextValue + '" data-color="' + WcolorValue + '" data-position="' + widgetPosValue + '" data-x_margin="' + sideSpaceValue + '" data-y_margin="' + bottomSpaceValue + '"><\/script></head><body></body></html>',
                     "id": "iframe",
                     "frameborder": "0",
-                    'class': 'widget-frame'
+                    'class': 'col-xs-12 m-t-20 widget-frame'
                 }));
 
                 $("#iframe").load(function() {
-                    $("#iframe").contents().find('#bmc-wbtn').trigger("click");
-                    // console.log("iframe");
+                    setTimeout(function() {
+                        $("#iframe").contents().find('#bmc-wbtn').trigger("click");
+                    }, 3000);
                 });
 
                 $('#descriptionText').keyup(debounce(function() {
@@ -957,15 +965,23 @@ class Buy_Me_A_Coffee_Admin_View
                 };
 
                 function updateWidget() {
+                    var posRule = (widgetPosValue.toLowerCase() === 'left')
+                        ? 'left:' + sideSpaceValue + 'px!important;right:auto!important;'
+                        : 'right:' + sideSpaceValue + 'px!important;left:auto!important;';
+                    var transformOriginRule = (widgetPosValue.toLowerCase() === 'left')
+                        ? 'transform-origin:left bottom!important;'
+                        : 'transform-origin:right bottom!important;';
+                    var previewStyle = '<style>#bmc-iframe{position:fixed!important;top:auto!important;bottom:' + (parseInt(bottomSpaceValue) + 72) + 'px!important;' + posRule + 'width:420px!important;max-width:420px!important;height:640px!important;min-height:0!important;max-height:640px!important;' + transformOriginRule + '}#bmc-close-btn{display:none!important;}</style>';
                     $("#widgetPreview").html($("<iframe />").attr({
-                        "srcdoc": '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><script data-name="BMC-Widget" src="' + widgetFile + '" data-id="' + userName + '" data-description="' + descriptionTextValue + '" data-message="' + messageTextValue + '" data-color="' + WcolorValue + '" data-position="' + widgetPosValue + '" data-x_margin="' + sideSpaceValue + '" data-y_margin="' + bottomSpaceValue + '"><\/script></head><body></body></html>',
+                        "srcdoc": '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge">' + previewStyle + '<script data-name="BMC-Widget" src="' + widgetFile + '" data-id="' + userName + '" data-description="' + descriptionTextValue + '" data-message="' + messageTextValue + '" data-color="' + WcolorValue + '" data-position="' + widgetPosValue + '" data-x_margin="' + sideSpaceValue + '" data-y_margin="' + bottomSpaceValue + '"><\/script></head><body></body></html>',
                         "id": "iframe",
                         "frameborder": "0",
                         'class': 'col-xs-12 m-t-20 widget-frame'
                     }));
                     $("#iframe").load(function() {
-                        $("#iframe").contents().find('#bmc-wbtn').trigger("click");
-                        // console.log("iframe");
+                        setTimeout(function() {
+                            $("#iframe").contents().find('#bmc-wbtn').trigger("click");
+                        }, 3000);
                     });
                 }
             }
@@ -1025,8 +1041,9 @@ class Buy_Me_A_Coffee_Admin_View
             });
 
             function popup_width() {
-                var popup_width = jQuery('.bmc-width').css('width').replace(/[^-\d\.]/g, '') - 80;
-                // console.log(popup_width);
+                var widthVal = jQuery('.bmc-width').css('width');
+                if (!widthVal) return;
+                var popup_width = widthVal.replace(/[^-\d\.]/g, '') - 80;
                 $('#bmc-popup').width(popup_width);
             }
 
