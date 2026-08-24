@@ -183,13 +183,13 @@ class Buy_Me_A_Coffee_Admin
         $table = $wpdb->prefix . 'bmc_plugin';
 
         $data = array(
-            'background_color' => htmlentities(strip_tags($_POST['background_color'])),
-            'text_color' => htmlentities(strip_tags($_POST['text_color'])),
-            'widget_text' => htmlentities(strip_tags($_POST['text'])),
-            'font_family' => htmlentities(strip_tags($_POST['font_family']))
+            'background_color' => htmlentities(strip_tags(isset($_POST['background_color']) ? $_POST['background_color'] : '')),
+            'text_color' => htmlentities(strip_tags(isset($_POST['text_color']) ? $_POST['text_color'] : '')),
+            'widget_text' => htmlentities(strip_tags(isset($_POST['text']) ? $_POST['text'] : '')),
+            'font_family' => htmlentities(strip_tags(isset($_POST['font_family']) ? $_POST['font_family'] : ''))
         );
         // print_r($_POST);die();
-        $where = array('name' => $_POST['bmc-user-name']);
+        $where = array('name' => isset($_POST['bmc-user-name']) ? $_POST['bmc-user-name'] : '');
 
         $wpdb->update($table, $data, $where);
         update_option('BMC_Widget_disconnect', 0);
@@ -264,11 +264,15 @@ class Buy_Me_A_Coffee_Admin
         $table = $wpdb->prefix . 'bmc_plugin';
         $tableWidget = $wpdb->prefix . 'bmc_widget_plugin';
         $admin_email = $current_user->data->user_email;
-        $name = $_POST['bmc-user-name'];
+        $name = isset($_POST['bmc-user-name']) ? trim($_POST['bmc-user-name']) : '';
         $matches = array();
         preg_match('/buymeacoffee\.com\/([^\/&?=]+)\/*/', $name, $matches);
-        if ($matches[1]) {
+        if (!empty($matches[1])) {
             $name = $matches[1];
+        }
+
+        if ($name === '') {
+            die(exit(wp_redirect(admin_url('admin.php?page=buy-me-a-coffee&status=true&name=false'))));
         }
 
         $response = wp_remote_post('https://app.buymeacoffee.com/api/v1/plugin/wp/slug/availability', array(
@@ -283,9 +287,14 @@ class Buy_Me_A_Coffee_Admin
             )),
         ));
 
-        $decodejs = json_decode($response['body']);
+        if (is_wp_error($response)) {
+            die(exit(wp_redirect(admin_url('admin.php?page=buy-me-a-coffee&status=true&name=false'))));
+        }
 
-        if (!is_null($decodejs->data->available) && !$decodejs->data->available) {
+        $decodejs = json_decode(wp_remote_retrieve_body($response));
+        $available = isset($decodejs->data->available) ? $decodejs->data->available : null;
+
+        if (!is_null($available) && !$available) {
             $result = $wpdb->get_row("SELECT *FROM $table	WHERE admin_email ='" . $admin_email . "'");
             // var_dump($result);die();
             if (empty($result)) {
@@ -354,10 +363,13 @@ class Buy_Me_A_Coffee_Admin
         global $wpdb;
         $current_user = wp_get_current_user();
         $table = $wpdb->prefix . 'bmc_widget_plugin';
-        // var_dump($_POST['toogle_switch_widget']);
-        // die();
+        $toggle_switch_widget = isset($_POST['toogle_switch_widget']) ? $_POST['toogle_switch_widget'] : null;
+        $reset = isset($_POST['reset']) ? $_POST['reset'] : '';
+        $save = isset($_POST['save']) ? $_POST['save'] : '';
 
-        if ($_POST['toogle_switch_widget'] == 1) {
+        $data = array();
+
+        if ($toggle_switch_widget == 1) {
             $data = array(
                 'description' => 'Support me on Buy Me a Coffee!',
                 'message' => 'Thank you for visiting. You can now buy me a coffee!',
@@ -369,7 +381,7 @@ class Buy_Me_A_Coffee_Admin
             );
         }
 
-        if ($_POST['reset'] == 'Delete' || $_POST['toogle_switch_widget'] == 0) {
+        if ($reset == 'Delete' || $toggle_switch_widget == 0) {
             $data = array(
                 'description' => " ",
                 'message' => " ",
@@ -381,25 +393,27 @@ class Buy_Me_A_Coffee_Admin
             );
         }
 
-        if ($_POST['save']  && $_POST['toogle_switch_widget'] == null) {
+        if ($save && $toggle_switch_widget == null) {
             $data = array(
-                'description' => htmlentities(strip_tags($_POST['description']), ENT_NOQUOTES),
-                'message' => htmlentities(strip_tags($_POST['message']), ENT_NOQUOTES),
-                'align' => htmlentities(strip_tags($_POST['align'])),
-                'widget_color' => htmlentities(strip_tags($_POST['widget_color'])),
-                'side_spacing' => htmlentities(strip_tags($_POST['side_spacing'])),
-                'bottom_spacing' => htmlentities(strip_tags($_POST['bottom_spacing'])),
+                'description' => htmlentities(strip_tags(isset($_POST['description']) ? $_POST['description'] : ''), ENT_NOQUOTES),
+                'message' => htmlentities(strip_tags(isset($_POST['message']) ? $_POST['message'] : ''), ENT_NOQUOTES),
+                'align' => htmlentities(strip_tags(isset($_POST['align']) ? $_POST['align'] : '')),
+                'widget_color' => htmlentities(strip_tags(isset($_POST['widget_color']) ? $_POST['widget_color'] : '')),
+                'side_spacing' => htmlentities(strip_tags(isset($_POST['side_spacing']) ? $_POST['side_spacing'] : '')),
+                'bottom_spacing' => htmlentities(strip_tags(isset($_POST['bottom_spacing']) ? $_POST['bottom_spacing'] : '')),
                 'widget_isactive' => '1'
             );
         }
 
         $where = array('admin_email' => $current_user->data->user_email);
 
-        $wpdb->update($table, $data, $where);
+        if (!empty($data)) {
+            $wpdb->update($table, $data, $where);
+        }
         // var_dump($wpdb->last_query);
         // die();
 
-        if (!$_POST['save'] && $_POST['toogle_switch_widget'] == null) {
+        if (!$save && $toggle_switch_widget == null) {
             update_option('BMC_Widget_disconnect', 0);
             die(exit(wp_redirect(admin_url('admin.php?page=buy-me-a-coffee&status=true&widget=false'))));
         }

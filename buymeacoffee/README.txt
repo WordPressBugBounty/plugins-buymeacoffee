@@ -5,7 +5,7 @@ Donate link: https://www.buymeacoffee.com/team
 Requires at least: 3.0.1
 Tested up to: 7.0
 Requires PHP: 5.2
-Stable tag: 4.4.9
+Stable tag: 4.4.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,9 @@ All payments are transferred to your Bank or Stripe account (Stripe offers insta
 2. Check the earnings and stats over a period of time
 
 == Changelog ==
+
+4.4.10
+Fixed PHP 8 warnings when saving your account, button, or widget settings.
 
 4.4.9
 Fixed widget styling issues on mobile devices.
